@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://kvi5yrr1pipa"
+path="res://.godot/imported/river_start.obj-689a7e57efa5bbe4d0c1b78a659a768b.mesh"
+
+[deps]
+
+files=["res://.godot/imported/river_start.obj-689a7e57efa5bbe4d0c1b78a659a768b.mesh"]
+
+source_file="res://Import/TP3/river_start.obj"
+dest_files=["res://.godot/imported/river_start.obj-689a7e57efa5bbe4d0c1b78a659a768b.mesh", "res://.godot/imported/river_start.obj-689a7e57efa5bbe4d0c1b78a659a768b.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

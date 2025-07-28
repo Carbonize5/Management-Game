@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://3yt254fnlfk7"
+path="res://.godot/imported/unit_wallTower.obj-3b9f86570e6d50fbb817e5f495c46e90.mesh"
+
+[deps]
+
+files=["res://.godot/imported/unit_wallTower.obj-3b9f86570e6d50fbb817e5f495c46e90.mesh"]
+
+source_file="res://Import/TP3/unit_wallTower.obj"
+dest_files=["res://.godot/imported/unit_wallTower.obj-3b9f86570e6d50fbb817e5f495c46e90.mesh", "res://.godot/imported/unit_wallTower.obj-3b9f86570e6d50fbb817e5f495c46e90.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

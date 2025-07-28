@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddvqeo6wfwawa"]
+
+[ext_resource type="ArrayMesh" uid="uid://bymnxmqxtv76l" path="res://TP3/grass.obj" id="1_1yvii"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bg6a2"]
+size = Vector3(1, 0.202405, 1.15833)
+
+[node name="Grass" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.361281, 0, 0.950311)
+mesh = ExtResource("1_1yvii")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0997547, 0)
+shape = SubResource("BoxShape3D_bg6a2")
