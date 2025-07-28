@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://bs4104mapjv55"]
+
+[sub_resource type="GDScript" id="3"]
+script/source = "extends Node3D
+
+const max_nb_lines = 30
+var nb_lines = 0
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+func print(node) :
+	if nb_lines > max_nb_lines :
+		$SubViewport/TextEdit.text = $SubViewport/TextEdit.text.substr(0, $SubViewport/TextEdit.text.rfind(\"\\n\"))
+	else :
+		nb_lines+=1
+	
+	$SubViewport/TextEdit.text = \"\\n\"+str(node)+$SubViewport/TextEdit.text
+	
+"
+
+[sub_resource type="QuadMesh" id="1"]
+lightmap_size_hint = Vector2i(7, 7)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_fgjj0"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5leud"]
+resource_local_to_scene = true
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_fgjj0")
+
+[node name="VRDebug" type="Node3D"]
+script = SubResource("3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("1")
+surface_material_override/0 = SubResource("StandardMaterial3D_5leud")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+size = Vector2i(640, 480)
+render_target_update_mode = 4
+
+[node name="TextEdit" type="TextEdit" parent="SubViewport"]
+custom_minimum_size = Vector2(640, 480)
+offset_right = 640.0
+offset_bottom = 480.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Test"

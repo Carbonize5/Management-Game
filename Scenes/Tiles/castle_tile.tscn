@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://j1bh0cix8fkm"]
+
+[ext_resource type="PackedScene" uid="uid://c3tx3kkogcpo3" path="res://Scenes/Tiles/default_tile.tscn" id="1_quluc"]
+[ext_resource type="ArrayMesh" uid="uid://cofar4uat2roy" path="res://Import/TP3/building_castle.obj" id="2_r6o51"]
+
+[node name="Castle" instance=ExtResource("1_quluc")]
+
+[node name="Mesh" parent="." index="6"]
+mesh = ExtResource("2_r6o51")

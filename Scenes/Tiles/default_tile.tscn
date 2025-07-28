@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3tx3kkogcpo3"]
+
+[ext_resource type="ArrayMesh" uid="uid://bymnxmqxtv76l" path="res://Import/TP3/grass.obj" id="1_qctil"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_dhgsp"]
+points = PackedVector3Array(0.5, 0, -0.289, 0.5, 0.2, -0.289, 0.5, 0, 0.289, 0.5, 0.2, 0.289, 0, 0, 0.577, 0, 0.2, 0.577, -0.5, 0, 0.289, -0.5, 0.2, 0.289, -0.5, 0, -0.289, -0.5, 0.2, -0.289, 0, 0, -0.577, 0, 0.2, -0.577)
+
+[node name="Tile" type="Node3D"]
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="Node3D2" type="Node3D" parent="."]
+
+[node name="Node3D3" type="Node3D" parent="."]
+
+[node name="Node3D4" type="Node3D" parent="."]
+
+[node name="Node3D5" type="Node3D" parent="."]
+
+[node name="Node3D6" type="Node3D" parent="."]
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_qctil")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_dhgsp")
