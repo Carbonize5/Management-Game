@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://dkmpisnx8hmnu"]
+
+[ext_resource type="PackedScene" uid="uid://c3tx3kkogcpo3" path="res://Scenes/Tiles/default_tile.tscn" id="1_qinuk"]
+[ext_resource type="ArrayMesh" uid="uid://botq4uctq2d5i" path="res://Import/TP3/stone_mountain.obj" id="2_1ue48"]
+[ext_resource type="Script" path="res://Scripts/Tiles/mountain.gd" id="2_gu0ru"]
+
+[node name="Mountain" instance=ExtResource("1_qinuk")]
+script = ExtResource("2_gu0ru")
+
+[node name="Mesh" parent="." index="6"]
+mesh = ExtResource("2_1ue48")

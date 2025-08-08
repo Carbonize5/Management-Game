@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://cth0c5d8mad0o"]
+
+[ext_resource type="PackedScene" uid="uid://c3tx3kkogcpo3" path="res://Scenes/Tiles/default_tile.tscn" id="1_qnklv"]
+[ext_resource type="Script" path="res://Scripts/Tiles/forest.gd" id="2_yp6ve"]
+[ext_resource type="ArrayMesh" uid="uid://3n3bo7hun5ln" path="res://Import/TP3/grass_forest.obj" id="3_bdxbw"]
+
+[node name="Forest" instance=ExtResource("1_qnklv")]
+script = ExtResource("2_yp6ve")
+
+[node name="Mesh" parent="." index="6"]
+mesh = ExtResource("3_bdxbw")

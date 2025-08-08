@@ -1,12 +1,10 @@
-class_name Castle
+class_name Mountain
 
 extends Tile
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	is_type = Type.CASTLE
-	is_in_castle_radius = true
+	is_type = Type.MOUNTAIN
 	can_build_upon = false
 
 

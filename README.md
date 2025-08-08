@@ -8,13 +8,12 @@ In this game, you will place different tiles to build a mini realm on a randomly
 
 ### Active Features
 
-Nothing for now. But it will come. 😉
+- A basic world generation with seed
 
 ### Features to add
 
 #### General features
 
-- A basic world generation
 - Basic interaction and feedback system
 - Placing building type tiles
 - Building tiles under some conditions (resources, available tile, ...)
@@ -30,3 +29,4 @@ Nothing for now. But it will come. 😉
 
 - Translate, rotate and resize the realm at runtime
 - Click and drop tile on the map
+- Switch building type tile based on micro gesture

@@ -1,13 +1,11 @@
-class_name Castle
+class_name Plain
 
 extends Tile
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	is_type = Type.CASTLE
-	is_in_castle_radius = true
-	can_build_upon = false
+	is_type = Type.PLAIN
+	can_build_upon = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

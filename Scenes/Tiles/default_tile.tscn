@@ -1,23 +1,31 @@
-[gd_scene load_steps=3 format=3 uid="uid://c3tx3kkogcpo3"]
+[gd_scene load_steps=4 format=3 uid="uid://c3tx3kkogcpo3"]
 
 [ext_resource type="ArrayMesh" uid="uid://bymnxmqxtv76l" path="res://Import/TP3/grass.obj" id="1_qctil"]
+[ext_resource type="Script" path="res://Scripts/Tiles/tile.gd" id="1_ygvqi"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_dhgsp"]
 points = PackedVector3Array(0.5, 0, -0.289, 0.5, 0.2, -0.289, 0.5, 0, 0.289, 0.5, 0.2, 0.289, 0, 0, 0.577, 0, 0.2, 0.577, -0.5, 0, 0.289, -0.5, 0.2, 0.289, -0.5, 0, -0.289, -0.5, 0.2, -0.289, 0, 0, -0.577, 0, 0.2, -0.577)
 
 [node name="Tile" type="Node3D"]
+script = ExtResource("1_ygvqi")
 
 [node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
 
 [node name="Node3D2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.865)
 
 [node name="Node3D3" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0.865)
 
 [node name="Node3D4" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
 
 [node name="Node3D5" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -0.865)
 
 [node name="Node3D6" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -0.865)
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 mesh = ExtResource("1_qctil")

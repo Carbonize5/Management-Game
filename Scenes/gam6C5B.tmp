@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://crgf2xi13o3ea"]
+[gd_scene load_steps=11 format=3 uid="uid://crgf2xi13o3ea"]
 
 [ext_resource type="Script" path="res://Scripts/Init.gd" id="1_mxl3n"]
+[ext_resource type="PackedScene" uid="uid://j1bh0cix8fkm" path="res://Scenes/Tiles/castle_tile.tscn" id="1_o2cnp"]
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_paih3"]
 [ext_resource type="AudioStream" uid="uid://bjerqi6hd17cm" path="res://Audio/#fantasyambience.wav" id="2_olhsi"]
 [ext_resource type="PackedScene" uid="uid://mvx83oc7uuhm" path="res://Import/valve_hand_model/left_hand.glb" id="3_agsiq"]
@@ -21,9 +22,10 @@ script = ExtResource("1_mxl3n")
 
 [node name="Manager" type="Node3D" parent="."]
 script = ExtResource("1_paih3")
-seed_value = "#fantasy"
 
 [node name="World" type="Node3D" parent="."]
+
+[node name="Castle" parent="World" instance=ExtResource("1_o2cnp")]
 
 [node name="XROrigin3D" type="XROrigin3D" parent="."]
 
@@ -54,3 +56,5 @@ tracker = &"right_hand"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_mpfxf")
+
+[connection signal="ready" from="." to="Manager" method="_on_origin_ready"]

@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://btfmxmr0go07r"]
+
+[ext_resource type="PackedScene" uid="uid://c3tx3kkogcpo3" path="res://Scenes/Tiles/default_tile.tscn" id="1_ap6bi"]
+[ext_resource type="Script" path="res://Scripts/Tiles/plain.gd" id="2_l2oaw"]
+
+[node name="Plain" instance=ExtResource("1_ap6bi")]
+script = ExtResource("2_l2oaw")
