@@ -8,7 +8,13 @@ In this game, you will place different tiles to build a mini realm on a randomly
 
 ### Active Features
 
+#### General features
+
 - A basic world generation with seed
+
+#### PC Features
+
+- Free flight camera mode
 
 ### Features to add
 
@@ -21,7 +27,6 @@ In this game, you will place different tiles to build a mini realm on a randomly
 
 #### PC Features
 
-- Free flight camera mode
 - Viewed from above camera mode
 - Switch between camera mode
 
