@@ -1,6 +1,7 @@
 extends Node
 
 var xr_interface: XRInterface
+@export var enable_vr_debug: bool = false
 
 func _ready():
 	xr_interface = XRServer.find_interface("OpenXR")
@@ -23,8 +24,9 @@ func _ready():
 		$XROrigin3D/LeftController.hide()
 		$XROrigin3D/RightController.hide()
 		print("PC commands initialized successfully")
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		# print("OpenXR not initialized, please check if your headset is connected")
-	set_vr_debug(true)
+	set_vr_debug(enable_vr_debug)
 
 func set_vr_debug(enable:bool) -> void:
 	if enable:

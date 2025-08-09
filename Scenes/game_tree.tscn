@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://crgf2xi13o3ea"]
+[gd_scene load_steps=11 format=3 uid="uid://crgf2xi13o3ea"]
 
 [ext_resource type="Script" path="res://Scripts/Init.gd" id="1_mxl3n"]
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_paih3"]
@@ -16,13 +16,17 @@ sky_material = SubResource("ProceduralSkyMaterial_l2scm")
 background_mode = 2
 sky = SubResource("Sky_1rq6u")
 
+[sub_resource type="FontVariation" id="FontVariation_qm5wb"]
+
 [node name="Origin" type="Node3D"]
 script = ExtResource("1_mxl3n")
 
-[node name="Manager" type="Node3D" parent="."]
+[node name="Manager" type="Node3D" parent="." node_paths=PackedStringArray("XROrigin", "LeftController", "RightController")]
 script = ExtResource("1_paih3")
 seed_value = "#fantasy"
-is_castle_centered = true
+XROrigin = NodePath("../XROrigin3D")
+LeftController = NodePath("../XROrigin3D/LeftController")
+RightController = NodePath("../XROrigin3D/RightController")
 
 [node name="World" type="Node3D" parent="."]
 
@@ -55,3 +59,27 @@ tracker = &"right_hand"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_mpfxf")
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="HUD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PCCrosshair" type="Label" parent="HUD/CenterContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_qm5wb")
+theme_override_font_sizes/font_size = 24
+text = "+"
+horizontal_alignment = 1
+vertical_alignment = 1
