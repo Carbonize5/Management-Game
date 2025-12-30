@@ -1,7 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://crgf2xi13o3ea"]
+[gd_scene load_steps=10 format=3 uid="uid://crgf2xi13o3ea"]
 
 [ext_resource type="Script" path="res://Scripts/Init.gd" id="1_mxl3n"]
-[ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_paih3"]
 [ext_resource type="AudioStream" uid="uid://bjerqi6hd17cm" path="res://Audio/#fantasyambience.wav" id="2_olhsi"]
 [ext_resource type="PackedScene" uid="uid://mvx83oc7uuhm" path="res://Import/valve_hand_model/left_hand.glb" id="3_agsiq"]
 [ext_resource type="PackedScene" uid="uid://x3r58nv0lw5x" path="res://Import/valve_hand_model/right_hand.glb" id="4_kphn4"]
@@ -21,13 +20,6 @@ sky = SubResource("Sky_1rq6u")
 [node name="Origin" type="Node3D"]
 script = ExtResource("1_mxl3n")
 
-[node name="Manager" type="Node3D" parent="." node_paths=PackedStringArray("XROrigin", "LeftController", "RightController")]
-script = ExtResource("1_paih3")
-seed_value = "#fantasy"
-XROrigin = NodePath("../XROrigin3D")
-LeftController = NodePath("../XROrigin3D/LeftController")
-RightController = NodePath("../XROrigin3D/RightController")
-
 [node name="World" type="Node3D" parent="."]
 
 [node name="XROrigin3D" type="XROrigin3D" parent="."]
@@ -35,6 +27,7 @@ RightController = NodePath("../XROrigin3D/RightController")
 [node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="XROrigin3D/XRCamera3D"]
+process_mode = 4
 stream = ExtResource("2_olhsi")
 autoplay = true
 

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bn17giurf55rw"]
+
+[ext_resource type="Script" path="res://Scripts/VRGameManager.gd" id="1_84w7x"]
+
+[node name="Manager" type="Node3D"]
+script = ExtResource("1_84w7x")

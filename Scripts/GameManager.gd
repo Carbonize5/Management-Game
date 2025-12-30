@@ -1,17 +1,20 @@
+class_name GameManager
+
 extends Node
 
-@export var seed_value : String
-@export var is_castle_centered : bool
+@export var seed_value : String = "#fantasy"
+@export var is_castle_centered : bool = false
 @export var max_world_map_range : float = 10
-@export var XROrigin : XROrigin3D
-@export var mouse_sensitivity : float = 0.001
-@export var cam_speed:float = 1
-@export var LeftController : XRController3D
-@export var RightController : XRController3D
-var is_free_cam : bool = true
+var XROrigin : XROrigin3D
+var target_tile : Tile
+var granted_mat : StandardMaterial3D
+var denied_mat : StandardMaterial3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	XROrigin = get_node("/root/Origin/XROrigin3D")
+	granted_mat = load("res://Materials/granted.material")
+	denied_mat = load("res://Materials/denied.material")
 	if seed_value != "" and seed_value != null : WorldMap.set_seed(seed_value.hash())
 	WorldMap.initialise_parameters($"../World")
 	if is_castle_centered:
@@ -19,50 +22,27 @@ func _ready() -> void:
 	else:
 		WorldMap.start_gen_world(max_world_map_range)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	if $"..".xr_interface and not $"..".xr_interface.is_initialized():
-		if is_free_cam : XROrigin.rotation.x = clamp(XROrigin.rotation.x, -1, 1)
-		do_pc_control(delta)
+func hover_tile(raycast : RayCast3D) -> void:
+	if raycast.is_colliding():
+		if target_tile == raycast.get_collider().get_parent():
+			var mesh:MeshInstance3D = target_tile.get_child(6)
+			set_hover_mat(mesh)
+		else:
+			if target_tile != null:
+				var mesh:MeshInstance3D = target_tile.get_child(6)
+				mesh.material_override = null
+			target_tile = raycast.get_collider().get_parent()
 	else:
-		pass
+		if target_tile != null:
+				var mesh:MeshInstance3D = target_tile.get_child(6)
+				mesh.material_override = null
+		target_tile = null
 
-func hover_tile() -> void:
-	if $"..".xr_interface and $"..".xr_interface.is_initialized():
-		pass
-	else:
-		pass
+func change_tile() -> void:
+	pass
 
-func _input(event: InputEvent) -> void:
-	if $"..".xr_interface and not $"..".xr_interface.is_initialized():
-		if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED and is_free_cam:
-			XROrigin.rotate(Vector3.UP, -event.relative.x * mouse_sensitivity)
-			XROrigin.rotate_object_local(Vector3.RIGHT, -event.relative.y * mouse_sensitivity)
+func set_hover_mat(mesh:MeshInstance3D) -> void:
+	if target_tile.can_build_upon:
+		mesh.material_override = granted_mat
 	else:
-		pass
-
-func do_pc_control(delta:float) -> void:
-	if Input.is_action_just_pressed("unlock_mouse"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		var dir:Vector3 = Vector3.ZERO
-		if Input.is_action_pressed("forward"):
-			dir.z-=1
-		if Input.is_action_pressed("backward"):
-			dir.z+=1
-		if Input.is_action_pressed("left"):
-			dir.x-=1
-		if Input.is_action_pressed("right"):
-			dir.x+=1
-		if Input.is_action_pressed("down"):
-			dir.y-=1
-		if Input.is_action_pressed("up"):
-			dir.y+=1
-		# translation en fonction du temps écoulé
-		dir*=delta*cam_speed
-		XROrigin.translate(dir)
-	else:
-		if Input.is_action_just_pressed("left_mouse_click") or Input.is_action_just_pressed("right_mouse_click"):
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	
-	
+		mesh.material_override = denied_mat

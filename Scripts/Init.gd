@@ -17,6 +17,8 @@ func _ready():
 		# Disabling PC commands
 		$XROrigin3D/XRCamera3D/PCRayCast.set_process(false)
 		$XROrigin3D/XRCamera3D/PCRayCast.hide()
+		var node:Node3D = load("res://Scenes/Manager/vr_manager.tscn").instantiate()
+		add_child(node)
 	else:
 		# Disabling VR commands
 		$XROrigin3D/LeftController.set_process(false)
@@ -26,6 +28,8 @@ func _ready():
 		print("PC commands initialized successfully")
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		# print("OpenXR not initialized, please check if your headset is connected")
+		var node:Node3D = load("res://Scenes/Manager/pc_manager.tscn").instantiate()
+		add_child(node)
 	set_vr_debug(enable_vr_debug)
 
 func set_vr_debug(enable:bool) -> void:

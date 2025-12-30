@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cajg0aobbiin8"]
+
+[ext_resource type="Script" path="res://Scripts/PCGameManager.gd" id="1_so5iw"]
+
+[node name="Manager" type="Node3D"]
+script = ExtResource("1_so5iw")
