@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://cajt7n6wpl12l"]
+
+[ext_resource type="PackedScene" uid="uid://c3tx3kkogcpo3" path="res://Scenes/Tiles/default_tile.tscn" id="1_1dg47"]
+[ext_resource type="Script" path="res://Scripts/Tiles/lumberjack.gd" id="2_ndipf"]
+[ext_resource type="ArrayMesh" uid="uid://tgubeqpba2mk" path="res://Import/TP3/dirt_lumber.obj" id="3_8cxu1"]
+
+[node name="Lumberjack" instance=ExtResource("1_1dg47")]
+script = ExtResource("2_ndipf")
+
+[node name="Mesh" parent="." index="6"]
+mesh = ExtResource("3_8cxu1")

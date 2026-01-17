@@ -2,19 +2,45 @@ class_name Tile
 
 extends Node3D
 
-enum Type {DEFAULT, CASTLE, PLAIN, FOREST, MOUNTAIN, VILLAGE, LUMBERJACK, MINE, FARM}
+enum Type {DEFAULT, CASTLE, PLAIN, FOREST, MOUNTAIN, VILLAGE, LUMBERJACK, MINE, FARM, WATCHTOWER}
 var is_type : Type = Type.DEFAULT
 var building_cost : Array[Resources.ResourceAndQuantity]
 var building_give : Array[Resources.ResourceAndQuantity]
 var extra_on_destruction : Array[Resources.ResourceAndQuantity]
-var is_in_castle_radius : bool = false
+var default_mesh : Mesh = load("res://Import/TP3/grass.obj")
+var hidden_mesh : Mesh = load("res://Import/TP3/grass.obj")
+var hidden_mat : StandardMaterial3D = load("res://Materials/hidden.tres")
+var is_tile_visible : bool = false
 var can_build_upon : bool = false
 
+func set_tile_visible(b:bool) -> void:
+	is_tile_visible = b
+	var meshInst : MeshInstance3D = get_child(6)
+	if is_tile_visible:
+		meshInst.mesh = default_mesh
+		meshInst.material_override = null
+	else:
+		meshInst.mesh = hidden_mesh
+		meshInst.material_override = hidden_mat
+
 func _exit_tree() -> void:
-	pass
+	if  not extra_on_destruction.is_empty():
+		for RnQ in extra_on_destruction:
+			Resources.add_resource(RnQ)
+	if  not building_cost.is_empty():
+		for RnQ in building_cost:
+			Resources.add_resource(RnQ)
+	if  not building_give.is_empty():
+		for RnQ in building_give:
+			Resources.remove_resource(RnQ)
 
 func _enter_tree() -> void:
-	pass
+	if  not building_cost.is_empty():
+		for RnQ in building_cost:
+			Resources.remove_resource(RnQ)
+	if  not building_give.is_empty():
+		for RnQ in building_give:
+			Resources.add_resource(RnQ)
 
 #func _init(type:Type, cost:Array, give:Array, extra:Array, build_on:bool) -> void:
 	#is_type = type

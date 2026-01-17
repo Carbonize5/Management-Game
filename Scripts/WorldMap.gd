@@ -2,6 +2,8 @@ extends Node
 
 var world_origin : Node3D
 var castle_tile : Tile
+var vision_radius : int = 3
+var vision_buildings_array : Array[Tile]
 var map_tiles : Dictionary
 var world_tiles : Array = [load("res://Scenes/Tiles/plain_tile.tscn"),
 load("res://Scenes/Tiles/forest_tile.tscn"), load("res://Scenes/Tiles/mountain_tile.tscn")]
@@ -15,6 +17,7 @@ func initialise_parameters(origin:Node3D) -> void:
 func start_gen_world_around_castle(max_range:float) -> void:
 	world_origin.add_child(castle_tile)
 	castle_tile.position = Vector3(0,0,0)
+	vision_buildings_array.append(castle_tile)
 	map_tiles[position_in_world_origin(castle_tile.global_position)] = castle_tile
 	gen_world_around_tile(castle_tile, castle_tile, max_range)
 
@@ -29,6 +32,7 @@ func start_gen_world(max_range:float) -> void:
 	castle_tile.position = random_tile.position
 	map_tiles[castle_tile.position] = castle_tile
 	world_origin.remove_child(random_tile)
+	vision_buildings_array.append(castle_tile)
 
 func gen_world_around_tile(active_node:Node3D, start_tile:Tile, max_range:float) -> void:
 	var neighbours : Array = active_node.get_children().slice(0,6)
@@ -55,11 +59,22 @@ func pick_random_world_tile() -> Tile:
 func position_in_world_origin(world_position:Vector3) -> Vector3:
 	return world_origin.global_transform * world_position
 
-func is_in_castle_radius(world_position:Vector3) -> bool:
+func is_in_radius(world_position:Vector3) -> bool:
+	for building in vision_buildings_array:
+		if building.position.distance_to(world_position) < vision_radius:
+			return true
 	return false
 
-func set_seed(seed) -> void:
-	RNG.seed = seed
+func refresh_vision():
+	var tiles_positions = map_tiles.keys()
+	for position in tiles_positions:
+		if is_in_radius(position):
+			map_tiles[position].set_tile_visible(true)
+		else:
+			map_tiles[position].set_tile_visible(false)
+
+func set_seed(world_seed) -> void:
+	RNG.seed = world_seed
 
 func get_random_tile_from_map() -> Tile:
 	return map_tiles[map_tiles.keys()[RNG.randi_range(0, map_tiles.size())]]

@@ -15,7 +15,7 @@ func add_resource(raq:ResourceAndQuantity) -> void:
 func remove_resource(raq:ResourceAndQuantity) -> void:
 	left[raq.type] -= raq.quantity
 
-func has_enough_resource_to_use(raq_array : Array[ResourceAndQuantity]) -> bool:
+func has_enough_resource_to_build(raq_array : Array[ResourceAndQuantity]) -> bool:
 	for raq in raq_array:
 		var dif = left[raq.type] - raq.quantity
 		if dif < 0:

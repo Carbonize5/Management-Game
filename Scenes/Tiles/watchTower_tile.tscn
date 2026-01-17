@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnnwyldmm6faq"]
+
+[ext_resource type="PackedScene" uid="uid://c3tx3kkogcpo3" path="res://Scenes/Tiles/default_tile.tscn" id="1_w17cj"]
+[ext_resource type="Script" path="res://Scripts/Tiles/watchTower.gd" id="2_cw6je"]
+[ext_resource type="ArrayMesh" uid="uid://be0wqxwcosvoy" path="res://Import/TP3/building_tower.obj" id="3_4ogjt"]
+
+[node name="WatchTower" instance=ExtResource("1_w17cj")]
+script = ExtResource("2_cw6je")
+
+[node name="Mesh" parent="." index="6"]
+mesh = ExtResource("3_4ogjt")

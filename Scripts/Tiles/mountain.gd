@@ -5,6 +5,7 @@ extends Tile
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	is_type = Type.MOUNTAIN
+	default_mesh = load("res://Import/TP3/stone_mountain.obj")
 	can_build_upon = false
 
 

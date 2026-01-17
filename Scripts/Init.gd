@@ -17,6 +17,7 @@ func _ready():
 		# Disabling PC commands
 		$XROrigin3D/XRCamera3D/PCRayCast.set_process(false)
 		$XROrigin3D/XRCamera3D/PCRayCast.hide()
+		$HUD.hide()
 		var node:Node3D = load("res://Scenes/Manager/vr_manager.tscn").instantiate()
 		add_child(node)
 	else:
