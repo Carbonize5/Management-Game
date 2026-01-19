@@ -2,13 +2,15 @@ class_name Forest
 
 extends Tile
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+func _init() -> void:
 	is_type = Type.FOREST
 	default_mesh = load("res://Import/TP3/grass_forest.obj")
 	can_build_upon = true
 	extra_on_destruction = [Resources.ResourceAndQuantity.new(Resources.Type.WOOD, 1)]
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

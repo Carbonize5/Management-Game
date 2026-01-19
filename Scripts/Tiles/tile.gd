@@ -3,15 +3,15 @@ class_name Tile
 extends Node3D
 
 enum Type {DEFAULT, CASTLE, PLAIN, FOREST, MOUNTAIN, VILLAGE, LUMBERJACK, MINE, FARM, WATCHTOWER}
-var is_type : Type = Type.DEFAULT
-var building_cost : Array[Resources.ResourceAndQuantity]
-var building_give : Array[Resources.ResourceAndQuantity]
-var extra_on_destruction : Array[Resources.ResourceAndQuantity]
+var is_type : Type = Type.DEFAULT #Might be useless in the end
+var building_cost : Array[Resources.ResourceAndQuantity] #Define the cost of the tile
+var building_give : Array[Resources.ResourceAndQuantity] #Define what you get in exchange
+var extra_on_destruction : Array[Resources.ResourceAndQuantity] #Resources awarded at destruction
 var default_mesh : Mesh = load("res://Import/TP3/grass.obj")
 var hidden_mesh : Mesh = load("res://Import/TP3/grass.obj")
 var hidden_mat : StandardMaterial3D = load("res://Materials/hidden.tres")
-var is_tile_visible : bool = false
-var can_build_upon : bool = false
+var is_tile_visible : bool = false #is the tile in vision range
+var can_build_upon : bool = false #Define if another tile can take it place
 
 func set_tile_visible(b:bool) -> void:
 	is_tile_visible = b

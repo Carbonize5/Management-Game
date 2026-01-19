@@ -8,7 +8,6 @@ extends Node
 var XROrigin : XROrigin3D
 var target_tile : Tile
 var tile_to_build : PackedScene
-var prebuild_tile : Tile
 var granted_mat : StandardMaterial3D
 var denied_mat : StandardMaterial3D
 
@@ -28,29 +27,34 @@ func _ready() -> void:
 
 func hover_tile(raycast : RayCast3D) -> void:
 	if raycast.is_colliding():
-		if target_tile == raycast.get_collider().get_parent():
+		if target_tile == raycast.get_collider().get_parent() and target_tile.is_tile_visible:
 			var mesh:MeshInstance3D = target_tile.get_child(6)
+			if TileSelector.enabled : mesh.mesh = TileSelector.visual.default_mesh
 			set_hover_mat(mesh)
 		else:
-			if target_tile != null and target_tile.is_tile_visible:
-				var mesh:MeshInstance3D = target_tile.get_child(6)
-				mesh.material_override = null
+			reset_previous_target()
 			target_tile = raycast.get_collider().get_parent()
 	else:
-		if target_tile != null and target_tile.is_tile_visible:
-				var mesh:MeshInstance3D = target_tile.get_child(6)
-				mesh.material_override = null
+		reset_previous_target()
 		target_tile = null
 
+func reset_previous_target():
+	if target_tile != null and target_tile.is_tile_visible:
+				var mesh:MeshInstance3D = target_tile.get_child(6)
+				mesh.mesh = target_tile.default_mesh
+				mesh.material_override = null
+
 func build_tile() -> void:
-	pass
-	#var new_tile : Tile = tile_to_build.instantiate()
-	#get_node("/root/Origin/World").add_child(new_tile)
-	#new_tile.position
+	var old_tile = WorldMap.get_tile(WorldMap.position_in_world_origin(target_tile.gloabl_position))
+	WorldMap.world_origin.remove_child(old_tile)
+	old_tile.queue_free()
+	WorldMap.world_origin.add_child(TileSelector.visual)
+	TileSelector.new_visual()
+	Resources.panel.update_data()
 
 func set_hover_mat(mesh:MeshInstance3D) -> void:
 	if target_tile.is_tile_visible:
-		if target_tile.can_build_upon and Resources.has_enough_resource_to_build(prebuild_tile.building_cost):
+		if target_tile.can_build_upon and Resources.has_enough_resource_to_build(TileSelector.visual.building_cost):
 			mesh.material_override = granted_mat
 		else:
 			mesh.material_override = denied_mat

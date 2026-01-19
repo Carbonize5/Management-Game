@@ -2,12 +2,17 @@ extends Node
 
 enum Type {PEOPLE, WOOD, FOOD, STONE}
 var left : Dictionary
+var panel : ResourcePanel
 
 func set_start_resources(p:int, w:int, f:int, s:int) -> void:
 	left[Type.PEOPLE] = p
 	left[Type.WOOD] = w
 	left[Type.FOOD] = f
 	left[Type.STONE] = s
+	panel.update_data()
+
+func set_panel(p:Node3D) -> void:
+	panel = p
 
 func add_resource(raq:ResourceAndQuantity) -> void:
 	left[raq.type] += raq.quantity

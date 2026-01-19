@@ -4,7 +4,7 @@ var world_origin : Node3D
 var castle_tile : Tile
 var vision_radius : int = 3
 var vision_buildings_array : Array[Tile]
-var map_tiles : Dictionary
+var map_tiles : Dictionary # position in "World" node referencial as key
 var world_tiles : Array = [load("res://Scenes/Tiles/plain_tile.tscn"),
 load("res://Scenes/Tiles/forest_tile.tscn"), load("res://Scenes/Tiles/mountain_tile.tscn")]
 var RNG : RandomNumberGenerator = RandomNumberGenerator.new()
@@ -20,6 +20,10 @@ func start_gen_world_around_castle(max_range:float) -> void:
 	vision_buildings_array.append(castle_tile)
 	map_tiles[position_in_world_origin(castle_tile.global_position)] = castle_tile
 	gen_world_around_tile(castle_tile, castle_tile, max_range)
+	var resource_panel = load("res://Scenes/resource_panel.tscn").instantiate()
+	castle_tile.add_child(resource_panel)
+	resource_panel.global_position.y+=1.5
+	Resources.panel = resource_panel
 
 func start_gen_world(max_range:float) -> void:
 	var starter_tile:Tile = pick_random_world_tile()
@@ -32,7 +36,12 @@ func start_gen_world(max_range:float) -> void:
 	castle_tile.position = random_tile.position
 	map_tiles[castle_tile.position] = castle_tile
 	world_origin.remove_child(random_tile)
+	random_tile.queue_free()
 	vision_buildings_array.append(castle_tile)
+	var resource_panel = load("res://Scenes/resource_panel.tscn").instantiate()
+	castle_tile.add_child(resource_panel)
+	resource_panel.global_position.y+=1.5
+	Resources.panel = resource_panel
 
 func gen_world_around_tile(active_node:Node3D, start_tile:Tile, max_range:float) -> void:
 	var neighbours : Array = active_node.get_children().slice(0,6)
@@ -58,6 +67,9 @@ func pick_random_world_tile() -> Tile:
 
 func position_in_world_origin(world_position:Vector3) -> Vector3:
 	return world_origin.global_transform * world_position
+
+func get_tile(position_in_world_node:Vector3) -> Tile:
+	return map_tiles[position_in_world_node]
 
 func is_in_radius(world_position:Vector3) -> bool:
 	for building in vision_buildings_array:

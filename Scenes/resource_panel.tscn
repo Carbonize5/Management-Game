@@ -1,0 +1,79 @@
+[gd_scene load_steps=14 format=3 uid="uid://pn8uc2re2v5v"]
+
+[ext_resource type="Script" path="res://Scripts/resource_panel.gd" id="1_fywvj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iahua"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_5texb"]
+material = SubResource("StandardMaterial3D_iahua")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oaxti"]
+
+[sub_resource type="TextMesh" id="TextMesh_kyyo0"]
+material = SubResource("StandardMaterial3D_oaxti")
+text = "People:
+Wood:
+Food:
+Stone:"
+horizontal_alignment = 0
+depth = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hcrqw"]
+
+[sub_resource type="TextMesh" id="TextMesh_v2qgc"]
+material = SubResource("StandardMaterial3D_hcrqw")
+text = "0"
+depth = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j4sne"]
+
+[sub_resource type="TextMesh" id="TextMesh_4rlkr"]
+material = SubResource("StandardMaterial3D_j4sne")
+text = "0"
+depth = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5kbry"]
+
+[sub_resource type="TextMesh" id="TextMesh_lg8mr"]
+material = SubResource("StandardMaterial3D_5kbry")
+text = "0"
+depth = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vyio0"]
+
+[sub_resource type="TextMesh" id="TextMesh_e6w7x"]
+material = SubResource("StandardMaterial3D_vyio0")
+text = "0"
+depth = 0.0
+
+[node name="ResourcePanel" type="Node3D"]
+script = ExtResource("1_fywvj")
+
+[node name="Panel" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+mesh = SubResource("QuadMesh_5texb")
+
+[node name="ResourcesText" type="MeshInstance3D" parent="Panel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.462814, 0.00837311, 0.001)
+mesh = SubResource("TextMesh_kyyo0")
+skeleton = NodePath("../..")
+
+[node name="Stats" type="Node3D" parent="Panel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.293431, 0, 0.001)
+
+[node name="People" type="MeshInstance3D" parent="Panel/Stats"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.34, 0)
+mesh = SubResource("TextMesh_v2qgc")
+
+[node name="Wood" type="MeshInstance3D" parent="Panel/Stats"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11, 0)
+mesh = SubResource("TextMesh_4rlkr")
+
+[node name="Food" type="MeshInstance3D" parent="Panel/Stats"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.11, 0)
+mesh = SubResource("TextMesh_lg8mr")
+
+[node name="Stone" type="MeshInstance3D" parent="Panel/Stats"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.34, 0)
+mesh = SubResource("TextMesh_e6w7x")
