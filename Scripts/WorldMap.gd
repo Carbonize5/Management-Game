@@ -65,11 +65,20 @@ func pick_random_world_tile() -> Tile:
 	else:
 		return world_tiles[2].instantiate()
 
-func position_in_world_origin(world_position:Vector3) -> Vector3:
-	return world_origin.global_transform * world_position
+func position_in_world_origin(global_pos:Vector3) -> Vector3:
+	return world_origin.global_transform * global_pos
 
-func get_tile(position_in_world_node:Vector3) -> Tile:
-	return map_tiles[position_in_world_node]
+func get_tile(global_pos:Vector3) -> Tile:
+	return map_tiles[position_in_world_origin(global_pos)]
+
+func get_neighbors(global_pos:Vector3) -> Array[Tile]:
+	var tiles_positions = map_tiles.keys()
+	var world_position : Vector3 = position_in_world_origin(global_pos)
+	var neighbors : Array[Tile] = []
+	for position in tiles_positions:
+		if world_position.distance_to(position) <= 1:
+			neighbors.append(get_tile(position))
+	return neighbors
 
 func is_in_radius(world_position:Vector3) -> bool:
 	for building in vision_buildings_array:
@@ -80,7 +89,7 @@ func is_in_radius(world_position:Vector3) -> bool:
 func refresh_vision():
 	var tiles_positions = map_tiles.keys()
 	for position in tiles_positions:
-		if is_in_radius(position):
+		if map_tiles[position].is_tile_visible or is_in_radius(position):
 			map_tiles[position].set_tile_visible(true)
 		else:
 			map_tiles[position].set_tile_visible(false)

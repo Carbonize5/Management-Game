@@ -1,11 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://dpey3avavopr3"]
+[gd_scene load_steps=5 format=3 uid="uid://dpey3avavopr3"]
 
 [ext_resource type="PackedScene" uid="uid://c3tx3kkogcpo3" path="res://Scenes/Tiles/default_tile.tscn" id="1_sir6t"]
 [ext_resource type="Script" path="res://Scripts/Tiles/village.gd" id="2_e81oe"]
 [ext_resource type="ArrayMesh" uid="uid://m2kx41b6a8be" path="res://Import/TP3/building_village.obj" id="2_xirpw"]
+[ext_resource type="AudioStream" uid="uid://byad22m5xrs0h" path="res://Audio/FX/foule.mp3" id="4_v8bde"]
 
 [node name="Village" instance=ExtResource("1_sir6t")]
 script = ExtResource("2_e81oe")
 
 [node name="Mesh" parent="." index="6"]
 mesh = ExtResource("2_xirpw")
+
+[node name="AmbiencePlayer3D" parent="." index="8"]
+stream = ExtResource("4_v8bde")
+autoplay = true

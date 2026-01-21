@@ -4,7 +4,7 @@ var building_tiles:Array[PackedScene] = [load("res://Scenes/Tiles/village_tile.t
 var index : int = 0
 var visual : Tile
 var enabled : bool = true
-@onready var parent : Node3D = get_node("/root/Origin/World")
+#@onready var parent : Node3D = get_node("/root/Origin/World")
 
 func _ready() -> void:
 	visual = building_tiles[index].instantiate()
@@ -30,7 +30,7 @@ func new_visual() -> void:
 	visual = building_tiles[index].instantiate()
 
 func switch_OnOff() -> void:
-	enabled != enabled
+	enabled = !enabled
 
 func update_visual_position(world_position : Vector3) -> void:
 	visual.global_position = world_position

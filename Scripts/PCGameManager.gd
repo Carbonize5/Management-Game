@@ -9,8 +9,9 @@ var is_free_cam : bool = true
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if is_free_cam : XROrigin.rotation.x = clamp(XROrigin.rotation.x, -1, 1)
-	do_control(delta)
 	hover_tile(get_node(String(XROrigin.get_path())+"/XRCamera3D/PCRayCast"))
+	do_control(delta)
+	# hover execute at the same time as do_control #NotGood
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED and is_free_cam:
@@ -37,6 +38,14 @@ func do_control(delta:float) -> void:
 		# translation en fonction du temps écoulé
 		dir*=delta*cam_speed
 		XROrigin.translate(dir)
+		if Input.is_action_just_pressed("right_mouse_click"):
+			TileSelector.switch_OnOff()
+		if Input.is_action_just_pressed("left_mouse_click") and can_build_tile:
+			build_tile()
+		if Input.is_action_just_pressed("next_building") and TileSelector.enabled:
+			TileSelector.next()
+		if Input.is_action_just_pressed("previous_building") and TileSelector.enabled:
+			TileSelector.previous()
 	else:
 		if Input.is_action_just_pressed("left_mouse_click") or Input.is_action_just_pressed("right_mouse_click"):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

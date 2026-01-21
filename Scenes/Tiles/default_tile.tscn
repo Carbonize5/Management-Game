@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3tx3kkogcpo3"]
+[gd_scene load_steps=5 format=3 uid="uid://c3tx3kkogcpo3"]
 
 [ext_resource type="ArrayMesh" uid="uid://bymnxmqxtv76l" path="res://Import/TP3/grass.obj" id="1_qctil"]
 [ext_resource type="Script" path="res://Scripts/Tiles/tile.gd" id="1_ygvqi"]
+[ext_resource type="AudioStream" uid="uid://ckvfdhta8x4jf" path="res://Audio/FX/ciseaux à pierre.mp3" id="3_2f0ri"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_dhgsp"]
 points = PackedVector3Array(0.5, 0, -0.289, 0.5, 0.2, -0.289, 0.5, 0, 0.289, 0.5, 0.2, 0.289, 0, 0, 0.577, 0, 0.2, 0.577, -0.5, 0, 0.289, -0.5, 0.2, 0.289, -0.5, 0, -0.289, -0.5, 0.2, -0.289, 0, 0, -0.577, 0, 0.2, -0.577)
@@ -34,3 +35,13 @@ mesh = ExtResource("1_qctil")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_dhgsp")
+
+[node name="AmbiencePlayer3D" type="AudioStreamPlayer3D" parent="."]
+unit_size = 0.3
+autoplay = true
+max_distance = 5.0
+
+[node name="BuildFXAudioPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_2f0ri")
+unit_size = 5.0
+max_distance = 10.0

@@ -13,6 +13,9 @@ var hidden_mat : StandardMaterial3D = load("res://Materials/hidden.tres")
 var is_tile_visible : bool = false #is the tile in vision range
 var can_build_upon : bool = false #Define if another tile can take it place
 
+func play_build_soundfx():
+	get_child(get_child_count()-1).play()
+
 func set_tile_visible(b:bool) -> void:
 	is_tile_visible = b
 	var meshInst : MeshInstance3D = get_child(6)

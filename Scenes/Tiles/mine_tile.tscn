@@ -1,10 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://phc5g3avsq14"]
+[gd_scene load_steps=4 format=3 uid="uid://phc5g3avsq14"]
 
 [ext_resource type="PackedScene" uid="uid://c3tx3kkogcpo3" path="res://Scenes/Tiles/default_tile.tscn" id="1_880hf"]
 [ext_resource type="ArrayMesh" uid="uid://b36fhl1b2uo1i" path="res://Import/TP3/building_mine.obj" id="2_gqid8"]
+[ext_resource type="Script" path="res://Scripts/Tiles/mine.gd" id="2_mc6dk"]
 
 [node name="Mine" instance=ExtResource("1_880hf")]
-script = null
+script = ExtResource("2_mc6dk")
 
 [node name="Mesh" parent="." index="6"]
 mesh = ExtResource("2_gqid8")
